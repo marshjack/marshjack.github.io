@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .box {
+        margin: 40px auto;
+        width: 1200px;
+        height: 450px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .box .img {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .box .img li {
+        float: left;
+        width: 1200px;
+    }
+
+    .box .img li a {
+        cursor: auto;
+    }
+
+    .box .img li a img {
+        width: 100%;
+    }
+
+    .box .pic {
+        position: absolute;
+        width: 80px;
+        height: 20px;
+        bottom: 50px;
+        left: 45%;
+        padding-top: 2.5px;
+        box-sizing: border-box;
+    }
+
+    .box .pic li {
+        float: left;
+        height: 15px;
+        width: 20%;
+        margin-right: 5%;
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+
+    .box .pic li.on {
+        background-color: pink;
+    }
+
+    .box .control button {
+        position: absolute;
+        top: 45%;
+        width: 40px;
+        height: 60px;
+        background: #ccc;
+        color: #FFF;
+        border: 0;
+        outline: none;
+        opacity: 0.5;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .box .control button:hover {
+        opacity: 0.8;
+    }
+
+    .box .control .prev {
+        left: 0;
+    }
+
+    .box .control .next {
+        right: 0;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <ul class="img">
+            <li><a href="javascript:;"><img src="images/1.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/2.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/3.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/4.jpg" alt=""></a></li>
+        </ul>
+        <ul class="pic">
+            <li class="on"><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
+        </ul>
+        <div class="control">
+            <button title="上一张" class="prev">&lt;</button>
+            <button title="下一张" class="next">&gt;</button>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var firstImg = $('.img li').first().clone();
+            $('.img').append(firstImg).width($('.img li').length * $('.img img').width());
+            var imgWidth = $('.img img').eq(0).width();
+            var index = 0;
+            var timer;
+            // console.log($('.img li').length)
+            function changeImg() {
+                //最后一张
+                if (index == $('.img li').length) {
+                    index = 1;
+                    $('ul').css({
+                        marginLeft: 0
+                    });
+                }
+                //第一张
+                if (index < 0) {
+                    index = $('.img li').length - 2;
+                    $('.img').css({
+                        marginLeft: ($('.img li').length - 1) * -imgWidth,
+                    })
+                }
+                //移动图片
+                $('.img').stop().animate({
+                    marginLeft: index * -imgWidth
+                }, 1000);
+                //小圆点
+                if (index == ($('.img li').length - 1)) {
+                    $('.pic li').eq(0).addClass('on').siblings().removeClass('on');
+                } else {
+                    $('.pic li').eq(index).addClass('on').siblings().removeClass('on');
+                }
+            }
+            //轮播
+            function autoPlay() {
+                timer = setInterval(function () {
+                    index++;
+                    changeImg(index);
+                }, 3000);
+            }
+            autoPlay();
+            //下一个
+            $('.next').click(function () {
+                clearInterval(timer);
+                index++;
+                changeImg(index);
+                console.log(index);
+
+            })
+            //上一个
+            $('.prev').click(function () {
+                clearInterval(timer);
+                index--;
+                changeImg(index);
+            })
+            // 鼠标移入停止 移出自动播放
+            $('.box').hover(
+                function () {
+                clearInterval(timer);
+            }, function () {
+                autoPlay();
+            })
+            //点击小圆点
+            $('.pic li').click(function () {
+                index = $(this).index();
+                changeImg(index);
+            })
+        });
+    </script>
+</body>
+
+</html>

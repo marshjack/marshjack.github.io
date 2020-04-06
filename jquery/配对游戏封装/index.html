@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <h1>匹配游戏</h1>
+        <p>移动步数：
+            <span class="move">0</span>步
+            <select class="cngGrade">
+                <option value="0">--选择难度--</option>
+                <option value="1">难度1: 4x4</option>
+                <option value="2">难度2: 6x6</option>
+                <option value="3">难度3: 8x8</option>
+                <option value="4">难度4: 10x10</option>
+            </select>
+            <button class="reLoad" onclick="window.location.reload()">重新开始</button></p>
+        <ul class="run">
+        </ul>
+    </div>
+</body>
+<!-- <script>
+    // 步数
+    var index = 0;
+    // 配对成功步数
+    var currentIndex = 0;
+    // 标记
+    var flag;
+    // font-awesome 自带logo 存放数组中
+    var arr = ['fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt',
+        'fa-bolt', 'fa-cube', 'fa-cube', 'fa-bus', 'fa-bus', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'
+    ];
+    var newArr = arr.concat();
+    // 重组
+    newArr.sort(function () {
+        return Math.random() - 0.5;
+    })
+
+    var a=0;
+    // console.log(newArr);
+    function run() {
+        // 遍历数组 把logo打乱添加到页面
+        $.each(newArr, function (index, elem) {
+            // console.log(elem);
+
+        });
+        for (var i = 0; i < 36; i++) {
+            $('.run').append("<li><i class='fa " + arr[a] + "' ></i></li>");
+            a++;
+            if(a>15){
+                a=0;
+            }
+            
+        }
+        flag = true;
+        $('.run li').click(function () {
+            // console.log($(this));
+            //  判断是否 点击过 或者是 配对成功
+            if ($(this).hasClass('open') || $(this).hasClass('couple')) {
+                return false;
+            }
+            //  是否配对成功
+            if (!flag) {
+                return false;
+            }
+            //  步数自增
+            index++;
+            // console.log($('.move').text());
+            $('.move').text(index);
+            if (index % 2 == 0) {
+                // 设置 标记
+                flag = false;
+                // 加个open2 的class 区分
+                $(this).addClass('open show open2');
+                // 内容相等
+                if ($('.open1').html() == $('.open2').html()) {
+                    setTimeout(function () {
+                        // 配对成功
+                        $('.open,.open2').addClass('couple');
+                        $('.open1').removeClass('open1');
+                        $('.open2').removeClass('open2');
+                        flag = true;
+                        // 成功步数自增
+                        currentIndex++;
+                        // console.log(currentIndex);
+                        if (currentIndex == 8) {
+                            setTimeout(function () {
+                                alert('游戏结束，您一共走了' + index + '步！');
+                                window.location.reload();
+                            }, 500);
+                        }
+                    }, 500);
+                } else {
+                    // 配对不成功 返回原型
+                    setTimeout(function () {
+                        $(".open1").removeClass("open show open1");
+                        $(".open2").removeClass("open show open2");
+                        flag = true;
+                    }, 500);
+                }
+            } else {
+                $(this).addClass("open show open1");
+            }
+        })
+    }
+    run();
+    console.log($('.run').width());
+    console.log($('.run').height());
+</script> -->
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+<script src="couple.js"></script>
+<script>
+    var arr = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt'];
+    var couple=new Couple('.box', arr, 4);
+    console.log(couple);
+    
+</script>
+
+</html>

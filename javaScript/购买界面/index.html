@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+
+<body>
+    <div class="box">
+        <div class="left">
+            <a href="javascript:;" id="smallImg"><img src="images/bl01.jpg">
+                <div id="floatDiv"></div>
+            </a>
+            <div id="bigImg"><img src="images/bl01.jpg"></div>
+            <ul>
+                <li id="imgCng">
+                    <a href="javascript:;"><img src="images/bl01.jpg" onmouseover="mouseOver(this)"></a>
+                    <a href="javascript:;"><img src="images/bl02.jpg" onmouseover="mouseOver(this)"></a>
+                    <a href="javascript:;"><img src="images/bl03.jpg" onmouseover="mouseOver(this)"></a>
+                    <a href="javascript:;"><img src="images/bl04.jpg" onmouseover="mouseOver(this)"></a>
+                </li>
+            </ul>
+            <div style="clear:both;"></div>
+            <div class="use">
+                <a href="javascript:;"><i class="fa fa-star"></i>收藏</a>
+                <a href="javascript:;"><i class="fa fa-exchange"></i>对比</a>
+            </div>
+        </div>
+        <div class="right">
+            <h2>魅族 16s Pro</h2>
+            <p class="red">【限时3期免息】高通骁龙 855 Plus | 索尼 4800W 像素超广角 AI 三摄 | 极边全面屏 | Flyme8 尝鲜体验 | 极速屏下指纹 | 全功能NFC</p>
+            <div class="price">
+                <p class="red" id="cost"><span>￥</span><span style="font-size: 22px;">2699.00</span></p>
+                <p class="jiagou"><a href="javascript:;">加价购</a>另加19元起，即可换购超值商品<a href="javascript:;" class="a_cng">立即加购
+                        &gt;</a></p>
+            </div>
+            <div class="send">
+                <p>支　　持 <span> <i class="fa fa-check-circle-o"></i> 花呗分期</span><span> <i
+                            class="fa fa-check-circle-o"></i>顺丰发货</span><span> <i
+                            class="fa fa-check-circle-o"></i>7天无理由退货（激活后不支持）</span>
+                </p>
+                <p>配送服务 <span> 广东省 佛山市 </span><i class="fa fa-caret-down"></i></p>
+                <p>本商品由 <span>魅族</span> 负责发货并提供售后服务 <a href="javascript:;" class="a_cng"><i
+                            class="fa fa-commenting"></i> 商城客服</a>
+                </p>
+            </div>
+            <div class="sel">
+                <p><span>型　　号</span><a href="javascript:;" class="active">魅族 16sPro</a></p>
+                <p><span>网络类型</span><a href="javascript:;" class="active">全网通公开版</a></p>
+                <p><span>颜色分类</span><a href="javascript:;" class="active">黑之谧镜</a><a href="javascript:;">暮光森林</a><a
+                        href="javascript:;">梦幻独角兽</a></p>
+                <p><span>内存容量</span><a href="javascript:;" class="active">6+128GB</a><a
+                        href="javascript:;">8+128GB</a><a href="javascript:;">8+256GB</a>
+                </p>
+                <p><span>选择套餐</span><a href="javascript:;" class="active">官方标配</a><a href="javascript:;"
+                        name="100">碎屏保套餐</a></p>
+                <p><span>数　　量</span><button onclick="reduce(this)">-</button><input type="text" value="1"
+                        readonly="readonly" id="num"><button onclick="plus(this)">+</button></p>
+            </div>
+            <div class="buy">
+                <button>立即购买</button><button>加入购物车</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var cost = document.getElementById('cost');
+    var sel = document.getElementsByClassName('sel')[0];
+    // 所有按钮
+    var all = sel.getElementsByTagName('a');
+    // 选择数据
+    var color = sel.getElementsByTagName('p')[2];
+    var color1 = sel.getElementsByTagName('p')[2].getElementsByTagName('a');
+    var rom = sel.getElementsByTagName('p')[3];
+    var rom1 = sel.getElementsByTagName('p')[3].getElementsByTagName('a');
+    var combo = sel.getElementsByTagName('p')[4];
+    var combo1 = sel.getElementsByTagName('p')[4].getElementsByTagName('a');
+
+    // 放大镜
+    var smallImg = document.getElementById("smallImg"),
+        bigBox = document.getElementById("bigImg"),
+        floatDiv = document.getElementById("floatDiv");
+
+    // 放大框
+    var bigImg = bigBox.children[0];
+
+    // 图片地址
+    var imgSrc = {
+        0: ['images/bl01.jpg', 'images/bl02.jpg', 'images/bl03.jpg', 'images/bl04.jpg'],
+        1: ['images/gt01.jpg', 'images/gt02.jpg', 'images/gt03.jpg', 'images/gt04.jpg'],
+        2: ['images/bt01.jpg', 'images/bt02.jpg', 'images/bt03.jpg', 'images/bt04.jpg'],
+    }
+    // 给点击按钮绑定样式
+    for (var i = 0; i < all.length; i++) {
+        all[i].onclick = function () {
+            var siblings = this.parentNode.children;
+            for (var j = 0; j < siblings.length; j++) {
+                siblings[j].className = '';
+            }
+            this.className = 'active';
+            if (this.parentNode == color || this.parentNode == rom || this.parentNode == combo) {
+                cngPrice();
+            }
+        };
+    };
+    //换图片
+    function cngImg(n) {
+        var img = document.getElementById('imgCng').children;
+        document.getElementsByClassName('left')[0].getElementsByTagName('a')[0].firstElementChild.src = imgSrc[n][0];
+        bigImg.src = document.getElementsByClassName('left')[0].getElementsByTagName('a')[0].firstElementChild.src;
+        for (var i = 0; i < imgSrc[n].length; i++) {
+            img[i].firstElementChild.src = imgSrc[n][i];
+        }
+    }
+    var plus = function (obj) {
+        // 上个节点
+        var money = parseInt(obj.previousElementSibling.value);
+        if (money < 10) {
+            money++;
+        } else {
+            money = 10;
+        }
+        obj.previousElementSibling.value = money
+    }
+    var reduce = function (obj) {
+        // 下一个节点
+        var money = parseInt(obj.nextElementSibling.value);
+        if (money > 1) {
+            money--;
+        } else {
+            money = 1;
+        }
+        obj.nextElementSibling.value = money
+
+    }
+
+    //价格改变
+    function cngPrice() {
+        var finalCost = cost.getElementsByTagName('span')[1];
+        var num = document.getElementById('num')
+        var p1 = 0;
+        var p2 = 0;
+        var p3 = 0;
+        // 颜色 没变化 原价
+        for (var i = 0; i < color1.length; i++) {
+            if (color1[i].className == 'active') {
+                switch (i) {
+                    case 0:
+                        p1 = 2699;
+                        cngImg(0);
+                        break;
+                    case 1:
+                        p1 = 2699;
+                        cngImg(1);
+                        break;
+                    case 2:
+                        p1 = 2699;
+                        cngImg(2);
+                        break;
+                }
+            };
+
+        }
+        // 内存 0:0 1: 200 2 :600
+        for (var i = 0; i < rom1.length; i++) {
+            if (rom1[i].className == 'active') {
+                switch (i) {
+                    case 0:
+                        p2 = 0;
+                        break;
+                    case 1:
+                        p2 = 300;
+                        break;
+                    case 2:
+                        p2 = 600;
+                        break;
+                }
+            };
+        }
+        // 套餐 0 :0  1:149
+        for (var i = 0; i < combo1.length; i++) {
+            if (combo1[i].className == 'active') {
+                p3 = i ? 149 : 0;
+            };
+        }
+        return finalCost.innerText = (p1 + p2 + p3).toFixed(2);
+    }
+
+    // 鼠标悬停大图src改变
+    function mouseOver(obj) {
+        var cngSrc = obj.src.slice(-15);
+        var left = document.getElementsByClassName('left')[0];
+        left.getElementsByTagName('a')[0].firstElementChild.src = cngSrc;
+        bigImg.src = left.getElementsByTagName('a')[0].firstElementChild.src
+    }
+
+
+    //鼠标进入
+    smallImg.onmouseover = function () {
+        floatDiv.style.display = "block";
+        bigBox.style.display = "block";
+    }
+    //鼠标移出
+    smallImg.onmouseout = function () {
+        floatDiv.style.display = "none";
+        bigBox.style.display = "none";
+    }
+    //鼠标移动
+    smallImg.onmousemove = function (ev) {
+        //小图片的宽度和高度
+        var w = smallImg.offsetWidth;
+        var h = smallImg.offsetHeight;
+        // console.log(w, h);
+
+        //缩放比例
+        var scale = 3;
+        //设置大图片的大小
+        bigImg.style.width = w * scale + "px";
+        bigImg.style.height = h * scale + "px";
+
+        //设置鼠标区域的大小
+        floatDiv.style.width = w / scale + "px";
+        floatDiv.style.height = h / scale + "px";
+
+        var e = ev || window.event;
+        //clientX获取当前目标离浏览器可视区域的x坐标      offsetWidth获取宽度
+        console.log(smallImg.offsetWidth,smallImg.offsetHeight);
+        console.log(smallImg.offsetLeft,smallImg.offsetTop);
+        
+        var left = e.clientX-smallImg.offsetLeft-floatDiv.offsetWidth/2;
+        
+        var top = e.clientY-smallImg.offsetTop-floatDiv.offsetHeight/2;
+    
+        // console.log(left,top);
+        //做边界处理，防止移动到图片外面
+        if (left <= 0) {
+            left = 0;
+        } else if (left >= smallImg.offsetWidth - floatDiv.offsetWidth) {
+            left = smallImg.offsetWidth - floatDiv.offsetWidth;
+        }
+        if (top <= 0) {
+            top = 0;
+        } else if (top >= smallImg.offsetHeight - floatDiv.offsetHeight) {
+            top = smallImg.offsetHeight - floatDiv.offsetHeight;
+        }
+
+        //设置遮罩层的位置
+        floatDiv.style.left = left + "px";
+        floatDiv.style.top = top + "px";
+
+        //设置大图片的显示位置
+        bigImg.style.left = -left * scale + "px";
+        bigImg.style.top = -top * scale + "px";
+    }
+</script>
+
+</html>

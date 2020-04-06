@@ -1,0 +1,569 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+@bigRed : #FC427B;
+
+// 导航
+.uNav {
+    padding: 15px 45px;
+    margin-bottom: 0;
+
+    .navbar-header a {
+        font-family: 'Srisakdi', cursive;
+        color: @bigRed;
+        font-weight: 700;
+        font-size: 40px;
+
+        &:hover {
+            color: @bigRed;
+        }
+    }
+
+    .uRight {
+        .dropdown-menu {
+            border-radius: 5px;
+            background: #333;
+
+            li {
+                margin: 5px;
+
+                a {
+                    font-size: 14px;
+                    color: white;
+
+                    &:hover {
+                        color: #333;
+                    }
+                }
+            }
+        }
+
+        &>li {
+            margin: 0 15px;
+
+            &>a {
+                color: #4c4c4c;
+                font-size: 15px;
+                padding: 15px 0;
+
+                &:hover {
+                    color: @bigRed;
+                }
+
+                &.active {
+                    color: @bigRed;
+                }
+            }
+        }
+    }
+}
+
+// 轮播
+.uLunbo {
+    .carousel-indicators {
+        li {
+            width: 16px;
+            height: 16px;
+            border: 3px solid white;
+
+            &.active {
+                background: @bigRed;
+            }
+        }
+    }
+
+    .item {
+        height: 450px;
+        background-size: cover;
+    }
+
+    .carousel-caption {
+        left: auto;
+        right: 0;
+        top: 0;
+        bottom: auto;
+
+        .row {
+            text-align: right;
+
+            h5 {
+                font-size: 22px;
+                color: #000;
+                font-weight: 400;
+                text-shadow: none;
+            }
+
+            h3 {
+                font-size: 3.5em;
+                font-weight: 700;
+            }
+
+            .btn {
+                background-color: @bigRed;
+                color: #fff;
+                border: 2px solid white;
+                font-weight: 400;
+                font-size: 14px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+
+    }
+
+    @media (min-width: 768px) {
+        .item {
+            height: 450px;
+            background-size: cover;
+        }
+
+        .carousel-caption {
+            top: 25px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .item {
+            height: 600px;
+            background-size: cover;
+        }
+
+        .carousel-caption {
+            top: 100px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .item {
+            height: 750px;
+            background-size: cover;
+        }
+
+        .carousel-caption {
+            top: 200px;
+        }
+    }
+
+    .item:nth-child(1) {
+        background-image: url("../images/1.jpg");
+    }
+
+    .item:nth-child(2) {
+        background-image: url("../images/2.jpg");
+    }
+
+    .item:nth-child(3) {
+        background-image: url("../images/3.jpg");
+    }
+}
+
+// welcome 
+.uWel {
+    padding-top: 100px;
+    box-sizing: border-box;
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 44px;
+        font-weight: 100;
+    }
+
+    h4 {
+        font-style: italic;
+        font-size: 22px;
+        color: #464646;
+        font-weight: 400;
+        padding: 20px 0;
+    }
+
+    span {
+        padding: 30px;
+        background-color: @bigRed;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 22px;
+    }
+
+    h5 {
+        font-size: 20px;
+        padding: 20px 0;
+    }
+
+    p {
+        color: #999;
+        font-family: 'Sintony', sans-serif;
+        font-size: 15px;
+    }
+}
+
+// 第四个
+.uFour {
+    padding: 60px 0;
+    background-color: @bigRed;
+    color: #fff;
+
+    span {
+        padding: 30px;
+        font-size: 25px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        margin-bottom: 40px;
+    }
+
+    h4 {
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+    p {
+        margin: 0 10px;
+        font-weight: 300;
+    }
+}
+
+// 博客
+.uBlog {
+
+    .top {
+        position: relative;
+
+        div {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 80px;
+            width: 80px;
+            background-color: #38d2fe;
+            text-align: center;
+            color: white;
+
+            h3 {
+                font-weight: 700;
+                line-height: 1;
+            }
+
+            h4 {
+                font-weight: 200;
+            }
+        }
+    }
+
+    padding: 100px 0;
+    letter-spacing: 1px;
+
+    .top {
+        margin-bottom: 50px;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .uCom {
+        a {
+            color: #999;
+
+            &:hover {
+                text-decoration: none;
+                color: black;
+            }
+
+            &:focus {
+                text-decoration: none;
+                color: #999;
+            }
+
+            span {
+                color: @bigRed;
+            }
+        }
+    }
+
+    p {
+        color: #999;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+//fashion look
+.uFashion {
+    background-image: url('../images/bg2.jpg');
+    background-size: cover;
+    height: 350px;
+    padding-top: 70px;
+    box-sizing: border-box;
+    color: #fff;
+
+    h3 {
+        font-size: 26px;
+        font-weight: 600;
+        opacity: 0.4;
+    }
+
+    h2 {
+        font-weight: 800;
+        font-size: 30px;
+    }
+
+    p {
+        font-weight: 400;
+        letter-spacing: 1px;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .uFashion {
+        height: 400px;
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .uFashion {
+        height: 450px;
+        background-size: cover;
+
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .uFashion {
+        height: 500px;
+        background-size: cover;
+
+    }
+}
+
+// 图片展示
+.uGallery {
+    padding: 50px 0 40px;
+
+    .top {
+        p {
+            color: #999;
+            letter-spacing: 1px;
+        }
+    }
+
+    div {
+        margin-bottom: 40px;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+// news
+.uNews {
+    background-image: url('../images/bg3.jpg');
+    background-size: cover;
+    height: 500px;
+    padding-top: 80px;
+
+    h2 {
+        color: #fff;
+        font-weight: 800;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #ccc;
+        letter-spacing: 1px;
+        margin-bottom: 50px;
+    }
+
+    form input {
+        padding: 30px 20px;
+    }
+
+    form input[type=submit] {
+        line-height: 50%;
+        font-size: 14px;
+        letter-spacing: 1px;
+        font-weight: 700;
+
+        &:hover {
+            background-color: #5bc0de;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (min-width: 992px) and (min-width: 1200px) {
+    .uNews {
+        height: 350px;
+        background-size: cover;
+    }
+}
+
+// 联系
+.uContact {
+    height: 1600px;
+    padding-top: 80px;
+
+    .top {
+        margin-bottom: 50px;
+    }
+
+    .conLeft {
+        padding: 20px 40px 30px;
+        box-shadow: 0 0 8px 0 #ccc;
+        margin-bottom: 25px;
+
+        h3 {
+            color: #38d2fe;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #999;
+
+            a {
+                color: #999;
+
+                &:hover {
+                    color: #999;
+                }
+
+                &:focus {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+    }
+
+    .conRight {
+        box-shadow: 0 0 15px 2px #ccc;
+        padding: 5px 40px 30px;
+
+        h3 {
+            color: #38d2fe;
+            font-weight: 600;
+            margin-bottom: 20px;
+
+        }
+
+        input,
+        textarea {
+            border: none;
+            border-bottom: 1px solid #999;
+            border-radius: 0;
+            box-shadow: none;
+
+            &:focus {
+                outline: 3px solid #bfdeff;
+            }
+        }
+
+        input {
+            padding: 20px 10px;
+        }
+
+        textarea {
+            min-height: 200px;
+            resize: none;
+            margin-bottom: 40px;
+        }
+
+        input[type=submit] {
+            background-color: @bigRed;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .uContact {
+        height: 1400px;
+    }
+}
+
+@media screen and (min-width: 992px) and (min-width: 1200px) {
+    .uContact {
+        height: 900px;
+    }
+}
+
+
+
+// 底部
+.uBottom {
+    background-color: #212020;
+
+    letter-spacing: 1px;
+
+    .container {
+        padding: 50px 0;
+
+        .col-md-6 {
+            .col-lg-6 {
+                min-height: 270px;
+
+                h4 {
+                    color: #fff;
+                    margin-bottom: 50px;
+                }
+
+                p,
+                dd,
+                a {
+                    color: #ccc;
+                }
+
+                dl {
+                    dt {
+                        color: #fff;
+                        margin-bottom: 10px;
+                        font-weight: 500;
+                    }
+
+                    dd {
+                        margin-bottom: 20px;
+                    }
+                }
+
+                a {
+                    display: block;
+                    margin-bottom: 20px;
+
+                    &:hover {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                    &:focus {
+                        color: #ccc;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+    .uCopy {
+        border-top: 1px solid #ccc;
+        color: #ccc;
+        background-color: inherit;
+        padding: 20px;
+        a{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30px;
+            width: 30px;
+            margin-bottom: 10px;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+

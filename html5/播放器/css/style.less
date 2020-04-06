@@ -1,0 +1,185 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+        url('iconfont.woff2') format('woff2'),
+        url('iconfont.woff') format('woff'),
+        url('iconfont.ttf') format('truetype'),
+        url('iconfont.svg#iconfont') format('svg');
+}
+
+@keyframes cdrotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 40px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border: 1px solid #000;
+    border-radius: 50%;
+    padding: 7px;
+    background-color: #0b5090;
+    cursor: pointer;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background-color: #323f62;
+    height: 240px;
+    width: 440px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 #000;
+    padding: 40px 20px;
+    box-sizing: border-box;
+
+    &.playing .card .cover .finger {
+        transform: rotate(5deg);
+    }
+
+    &.playing .card .cover .cd {
+        animation-play-state: running;
+    }
+
+    audio {
+        display: none;
+    }
+
+    .card {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+
+        .cover {
+            height: 120px;
+            width: 30%;
+            position: relative;
+            vertical-align: bottom;
+            left: 0;
+            top: 0;
+
+            .cd {
+                width: 100%;
+                height: inherit;
+                border-radius: 50%;
+                background: url(../images/cd.png) center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: cdrotate 3s linear infinite;
+                animation-play-state: paused;
+
+                img {
+                    height: 70%;
+                    align-items: center;
+                    border-radius: 50%;
+                }
+            }
+
+            .finger {
+                background-image: url(../images/finger.png);
+                background-repeat: no-repeat;
+                position: absolute;
+                height: 100px;
+                width: 25px;
+                right: -15px;
+                top: 0;
+                background-size: 100%;
+                transform-origin: 15px 10px;
+                transform: rotate(-15deg);
+                transition: all 0.3s;
+            }
+
+        }
+
+        .control {
+            width: 70%;
+            text-align: center;
+            color: #fff;
+            h5 {
+                margin-bottom: 20px;
+            }
+
+            span:nth-of-type(2) {
+                position: relative;
+            }
+        }
+    }
+
+    .progress {
+        input[type=range] {
+            border-radius: 10px;
+            width: 100%;
+            -webkit-appearance: none;
+            background-image: linear-gradient(to right, rgb(25, 201, 40), white 0%, white);
+            cursor: pointer;
+            &:focus {
+                outline: none;
+            }
+            &::-webkit-slider-runnable-track {
+                height: 8px;
+                border-radius: 10px;
+                /*将轨道设为圆角的*/
+                box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112;
+                /*轨道内置阴影效果*/
+            }
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 15px;
+                width: 15px;
+                margin-top: -2px;
+                /*使滑块超出轨道部分的偏移量相等*/
+                background: #ffffff;
+                border-radius: 50%;
+                /*外观设置为圆形*/
+                border: solid 0.125em rgba(205, 224, 230, 0.5);
+                /*设置边框*/
+                box-shadow: 0 .125em .125em #3b4547;
+                /*添加底部阴影*/
+            }
+        }
+    }
+    
+    .time {
+        color: white;
+        text-align: right;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+ul.list {
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    li {
+        margin-bottom: 5px;
+        cursor: pointer;
+        margin-left: 20px;
+        &.active {
+            transform: scale(1.2);
+            font-weight: 800;
+        }
+    }
+}

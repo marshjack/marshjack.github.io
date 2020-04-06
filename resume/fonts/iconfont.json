@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "551844",
+      "name": "竖线",
+      "font_class": "vertical_line",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "689304",
+      "name": "下拉",
+      "font_class": "xiala",
+      "unicode": "e822",
+      "unicode_decimal": 59426
+    },
+    {
+      "icon_id": "755551",
+      "name": "菱形",
+      "font_class": "lingxing",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    }
+  ]
+}

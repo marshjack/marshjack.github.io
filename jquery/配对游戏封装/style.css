@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+.box{
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+h1{
+    margin-bottom:10px;
+}
+.move{
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+}
+.reLoad{
+    outline: none;
+    cursor: pointer;
+    background-color: skyblue;
+    padding: 5px;
+    font-size: 18px;
+    color: white;
+    margin-left: 50px;
+    border: 0 ;
+}
+.run{
+    margin-top: 20px;
+    width:650px;
+    height: 610px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    box-shadow: 5px 5px 5px 5px rgb(107, 103, 103);
+    /* 渐变色 linear-gradient（color1，color2） */
+    background: linear-gradient(rgb(64, 214, 214), rgb(185, 76, 185));;
+    /* flex 布局 */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.run li{
+    box-sizing: border-box;
+    background-color: #2e3d49;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0;
+    color: #ffffff;
+    text-align: center;
+    /* 水平翻转180度  c3动画*/
+    transform: rotateY(180deg);
+    transition: transform 0.3s;
+}
+.run li.open{
+    background-color: #02b3e4;
+    cursor: default;
+    /* 水平翻转360度  c3动画*/
+    transform:rotateY(360deg);
+    transition:transform 0.3s;
+}
+.run li.show{
+    font-size: 34px;
+}
+.run li.couple{
+    cursor: default;
+    font-size: 34px;
+    background: #02ccba;
+    animation: bigger 0.3s alternate;
+}
+/* 自定义动画 放大比例  */
+@keyframes bigger{
+    from{transform:scale(1)}
+    to{transform:scale(1.1)}
+}

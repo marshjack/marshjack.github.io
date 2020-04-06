@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    html {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .control {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    input[type=button] {
+        margin-bottom: 20px;
+        outline: none;
+        border: none;
+        background-color: skyblue;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        height: 500px;
+        width: 500px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    ul li {
+        width: 33%;
+        height: 33%;
+        background-image: url(./1.jpg);
+        background-size: 300%;
+    }
+</style>
+
+<body>
+    <div class="control">
+        <input type="button" value="开始" onclick="drag()">
+    </div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+<script src="./drag.js"></script>
+<script>
+    window.onload = function () { 
+        var ul = document.querySelector('ul');
+        var lis = document.querySelectorAll('ul li');
+        var button = document.querySelector('.control input')
+        var array = ["left top", "center top", "right top", "left center", "center center", "center right", "left bottom","center bottom", "right bottom"];
+        var drag = new Drag(ul,lis,array,button);
+     }
+</script>
+
+</html>

@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.b6 ul {
+    display: flex;
+    width: 70%;
+    margin: 20px auto;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.b6 li {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #ccc;
+    transition: all .5s;
+    cursor: pointer;
+    color: rgb(109, 108, 108);
+}
+
+.b6 .box1:hover {
+    transform: scale(1.1);
+}
+
+.b6 .box2:hover {
+    transform: scale(0.9);
+}
+
+.b6 .box3:hover {
+    transform: rotate(10deg);
+}
+
+.b6 .box4:hover {
+    transform: rotate(-10deg);
+}
+
+.b6 .box5:hover {
+    transform: translateY(-10px)
+}
+
+.b6 .box6:hover {
+    transform: translateY(10px)
+}
+
+.b6 .box7:hover {
+    transform: skew(-10deg);
+}
+
+.b6 .box8:hover {
+    transform: skew(10deg);
+}
+
+.b6 .box9:hover {
+    transform: translateX(10px)
+}
+
+.b6 .box10:hover {
+    transform: translateX(-10px)
+}
+
+.b6 .box10:hover {
+    transform: translateX(-10px)
+}
+
+.b6 .box11:hover {
+    background-color: skyblue;
+    color: white;
+}
+
+.b6 .box12 {
+    transform: perspective(1px) translateZ(0);
+    transition-property: color;
+    transition-duration: 0.3s;
+}
+
+.b6 .box12::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2098D1;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.b6 .box12:hover {
+    color: white;
+}
+
+.b6 .box12:hover:before {
+    transform: scaleX(1);
+}
+
+.b6 .box13 {
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
+
+.b6 .box13:hover {
+    border: 2px solid #2098D1;
+}
+
+.b6 .box14 {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.b6 .box14:hover {
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.ghostBox {
+    width: 90%;
+    display: flex;
+    margin: 20px auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.ghostBox button {
+    background: none;
+    padding: 15px 30px;
+    outline: none;
+    border: 2px solid skyblue;
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+}
+
+/* 伪类加过渡 */
+.ghostBox button::before {
+    content: "";
+    background-color: skyblue;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 1s;
+    z-index: -1;
+}
+
+/* 左 */
+.ghostBox1::before {
+    transform: rotateY(90deg);
+    transform-origin: 0 50%;
+}
+
+.ghostBox1:hover::before {
+    transform: rotateY(0deg)
+}
+
+/* 上 */
+.ghostBox2::before {
+    transform: rotateX(90deg);
+    transform-origin: 50% 0;
+}
+
+.ghostBox2:hover::before {
+    transform: rotateX(0deg);
+}
+
+/* 右 */
+.ghostBox3::before {
+    transform: rotateY(90deg);
+    transform-origin: 100% 50%;
+}
+
+.ghostBox3:hover::before {
+    transform: rotateY(0deg);
+}
+
+/* 下 */
+.ghostBox4::before {
+    transform: rotateX(90deg);
+    transform-origin: 50% 100%;
+}
+
+.ghostBox4:hover::before {
+    transform: rotateX(0deg);
+}
+
+/* 斜 */
+.ghostBox5::before {
+    transform: rotateZ(15deg) rotateX(90deg) scale(2)
+}
+
+.ghostBox5:hover::before {
+    transform: rotateZ(15deg) rotateX(0deg) scale(2)
+}
+
+/* 中间圆 */
+.ghostBox6::before {
+    transform: scale(0);
+    border-radius: 50%;
+}
+
+.ghostBox6:hover::before {
+    transform: scale(2)
+}
+
+/* 边框 */
+.ghostBox7::before {
+    height: 5%;
+    transform: rotateY(90deg);
+    transform-origin: 0 50%;
+}
+
+.ghostBox7:hover::before {
+    transform: rotateY(0deg);
+}
+
+/* 中间开 */
+.ghostBox8::before {
+    transform: rotateX(90deg);
+    transform-origin: 100% 50%;
+}
+
+.ghostBox8:hover::before {
+    transform: rotateX(0deg);
+}
+
+
+.ghostBox9::before {
+    height: 5%;
+    transform-origin: 50% 100%;
+    transform: rotateY(0deg);
+}
+
+.ghostBox9:hover::before {
+    transform: rotateY(90deg);
+}

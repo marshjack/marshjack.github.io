@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul li {
+        width: 16.66%;
+        float: left;
+        text-align: center;
+        border: 1px solid #666;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .con {
+        padding: 0 20px;
+    }
+    .con p{
+        font-size: 14px;
+        float: left;
+        min-height: 150px;
+        width: 30%;
+        border: 1px solid rgb(94, 87, 87);
+        padding: 10px;
+        color: #666;
+    }
+    .con p span {
+        font-weight: 800;
+        font-size: 20px;
+        color: skyblue;
+    }
+</style>
+
+<body>
+    <ul></ul>
+    <div class="con"></div>
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "./astro.json",
+            dataType: "json",
+            success: function (response) {
+                response.result.forEach(function (elem) {
+                    $('ul').append("<li title=" + elem.astroid + "><h3>" + elem.astroname +
+                        "</h3><p>" + elem.date + "</p><img src=" + elem.pic + " /></li>")
+                })
+            }
+        });
+        $('ul').on("click", 'li', function () {
+            var astroid = $(this).attr('title');
+            jsonp('https://api.jisuapi.com/astro/fortune', astroid, "a47dbdf9e54bd07c", function (parem) {
+                $('.con').empty();
+                $('.con').append(
+                    "<p><span>今年运势-总：</span>" + parem.result.year.summary +
+                    "</p><p><span>今年运势-钱：</span>" + parem.result.year.money +
+                    "</p><p><span>今年运势-职场：</span>" + parem.result.year.career +
+                    "</p><p><span>今年运势-爱情：</span>" + parem.result.year.love +
+                    "</p><p><span>今月-整体：</span>" + parem.result.month.summary +
+                    "</p><p><span>今月-钱：</span>" + parem.result.month.money +
+                    "</p><p><span>今月-职业：</span>" + parem.result.month.career +
+                    "</p><p><span>今月-爱情：</span>" + parem.result.month.love +
+                    "</p><p><span>今月-健康：</span>" + parem.result.month.health +
+                    "</p><p><span>这周-钱：</span>" + parem.result.week.money +
+                    "</p><p><span>这周-职业：</span>" + parem.result.week.career +
+                    "</p><p><span>这周-爱情：</span>" + parem.result.week.love +
+                    "</p><p><span>这周-健康：</span>" + parem.result.week.health +
+                    "</p><p><span>今天-运势：</span>" + parem.result.today.presummary +
+                    "</p><p><span>明天-运势：</span>" + parem.result.tomorrow.presummary +
+                    "</p>"
+                );
+            })
+        });
+        // 封装
+        function jsonp(url, astroid, appkey, callback) {
+            var name = 'jsonp' + Date.now();
+            window[name] = callback;
+            var node = document.createElement('script');
+            node.src = url + '?astroid=' + astroid + '&appkey=' + appkey + '&callback=' + name;
+            document.body.appendChild(node);
+        }
+    </script>
+</body>
+
+</html>

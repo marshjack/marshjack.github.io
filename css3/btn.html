@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="b1">
+            <h2>过渡圆</h2>
+            <button><span></span>透过</button>
+            <button><span></span>透过</button>
+            <button><span></span>透过</button>
+        </div>
+        <div class="b2">
+            <h2>晃动</h2>
+            <button class="btn1">
+                晃动
+            </button>
+            <h2>冒泡</h2>
+            <button class="btn2">冒泡</button>
+        </div>
+        <div class="b3">
+            <h2>社交图标</h2>
+            <div class="b3Box">
+                <div class="btn3"><i class="fa fa-camera-retro"></i></div>
+                <div class="btn3"><i class="fa fa-tumblr"></i></div>
+                <div class="btn3"><i class="fa fa-github-alt"></i></div>
+                <div class="btn3"><i class="fa fa-google-plus"></i></div>
+                <div class="btn3"><i class="fa fa-bluetooth"></i></div>
+            </div>
+        </div>
+        <div class="b4">
+            <h2>五星评价</h2>
+            <ul>
+                <li class="star">
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="star">
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="star">
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="star">
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="star">
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="b5">
+            <h2>音频播放</h2>
+           <div class="b5Box">
+               <span></span>
+               <span></span>
+               <span></span>
+           </div>
+        </div>
+    </div>
+</body>
+<script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var btn_1 = document.querySelectorAll('.b1 button');
+    btn_1.forEach(function (elem) {
+        elem.onmousemove = function (ev) {
+            this.childNodes[0].style.left = ev.offsetX - 50 + 'px';
+            this.childNodes[0].style.top = ev.offsetY - 50 + 'px';
+        }
+    });
+</script>
+
+</html>

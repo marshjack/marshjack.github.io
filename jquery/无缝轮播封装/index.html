@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .box{
+        margin: 40px auto;
+        width: 1200px;
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+    }
+    .lunbo{
+        margin: 40px auto;
+        width: 600px;
+        height: 225px;
+        position: relative;
+        overflow: hidden;
+    }
+    .img {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .img li {
+        float: left;
+    }
+
+    .img li a {
+        cursor: auto;
+    }
+
+    .img li a img {
+        width: 100%;
+    }
+
+    .pic {
+        position: absolute;
+        width: 80px;
+        height: 20px;
+        bottom: 50px;
+        left: 45%;
+        padding-top: 2.5px;
+        box-sizing: border-box;
+    }
+
+    .pic li {
+        float: left;
+        height: 15px;
+        width: 20%;
+        margin-right: 5%;
+        border-radius: 50%;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    .pic li.on {
+        background-color: pink;
+    }
+
+    .control button {
+        position: absolute;
+        top: 45%;
+        width: 40px;
+        height: 60px;
+        background: #ccc;
+        color: #FFF;
+        border: 0;
+        outline: none;
+        opacity: 0.5;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .control button:hover {
+        opacity: 0.8;
+    }
+
+    .control .prev {
+        left: 0;
+    }
+
+    .control .next {
+        right: 0;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <ul class="img">
+            <li><a href="javascript:;"><img src="images/1.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/2.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/3.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/4.jpg" alt=""></a></li>
+        </ul>
+        <ul class="pic">
+        </ul>
+        <div class="control">
+            <button title="上一张" class="prev">&lt;</button>
+            <button title="下一张" class="next">&gt;</button>
+        </div>
+    </div>
+    <script>
+        function Swiper(selector, option) {
+            // 选择器
+            this.$root = $(selector);
+            // 获取宽高
+            this.w = this.$root.width();
+            this.h = this.$root.height();
+            // 下标
+            this.current = 0;
+            // 图片
+            this.$items = this.$root.find('.img li');
+            this.$wrap = this.$root.find('.img');
+            // 圆点
+            this.$pagination = this.$root.find('.pic');
+            // 左右 点击 按钮
+            this.$prev = this.$root.find('.control .prev');
+            this.$next = this.$root.find('.control .next');
+            // 触发函数
+            this.init();
+            this.pagination();
+            this.dotsClick();
+            this.initClick();
+        }
+        Swiper.prototype.init = function () {
+            // wrap的总宽
+            this.$wrap.css('width', this.$items.length * this.w + 'px');
+            // 图片宽
+            this.$items.css('width', this.w + 'px');
+            var _this = this;
+            this.$root.hover(
+                function(){
+                    setTimeout(clearInterval(_this.timer),20);
+                },
+                function(){
+                    _this.autoPlay(_this.interval);
+                })
+        }
+        // 小圆点出现
+        Swiper.prototype.pagination = function () {
+            var _this = this;
+            this.$items.each(function (index, elem) {
+                // current=index=0 时 初始化on
+                if (_this.current === index) {
+                    _this.$pagination.append('<li class="on"</li>');
+                } else {
+                    _this.$pagination.append('<li></li');
+                }
+            });
+            //   dots 为小圆点
+            _this.$dots = this.$pagination.find('li');
+        }
+        // 圆点点击事件
+        Swiper.prototype.dotsClick = function () {
+            var _this = this;
+            this.$dots.click(function () {
+                // 圆点绑定下标
+                var index = $(this).index();
+                _this.move(index);
+            })
+        }
+        // 圆点高亮
+        Swiper.prototype.dotsLight = function (index) {
+            this.$dots.eq(index).addClass('on').siblings().removeClass('on');
+        }
+        // 图片显示 
+        Swiper.prototype.showPic = function (index) {
+            if (this.current < index) {
+                // 如果即将显示的 在后面
+                // 准备后面的图片
+                this.$root.find('.img li').eq(0).after(this.$items.eq(index));
+                this.nextPic();
+            } else {
+                // 即将显示在前面 
+                // 准备前面的图片
+                this.$root.find('.img li').eq(0).before(this.$items.eq(index));
+                this.prevPic();
+            }
+        }
+        // 移动 改变index
+        Swiper.prototype.move = function (index) {
+            this.showPic(index);
+            this.dotsLight(index);
+            this.current = index;
+        }
+        // 向右移动
+        Swiper.prototype.nextPic = function () {
+            var _this = this;
+            this.$wrap.animate({
+                left: -this.w + 'px'
+            }, 300, function () {
+                _this.$wrap.append(_this.$root.find(".img li").eq(0)).css("left", "0px");
+            })
+        }
+        // 向左移动
+        Swiper.prototype.prevPic = function () {
+            this.$wrap.css('left', -this.w + 'px').animate({
+                left: '0px'
+            }, 300);
+        }
+        // 给按钮添加点击事件
+        Swiper.prototype.initClick = function () {
+            this.$prev.on('click', {
+                obj: this
+            }, this.prevClick);
+            this.$next.on('click', {
+                obj: this
+            }, this.nextClick);
+        }
+        // 左边点击事件
+        Swiper.prototype.prevClick = function (e) {
+            // console.log(e.data.obj);
+            var _this;
+            if (e && e.data.obj) {
+                _this = e.data.obj;
+            } else {
+                _this = this;
+            }
+            var prevIndex = _this.current - 1 < 0 ? _this.$items.length - 1 : _this.current - 1;
+            _this.move(prevIndex);
+        }
+        // 右边点击事件
+        Swiper.prototype.nextClick = function (e) {
+            var _this;
+            if (e && e.data.obj) {
+                _this = e.data.obj;
+            } else {
+                _this = this;
+            }
+            var nextIndex = _this.current + 1 > _this.$items.length - 1 ? 0 : _this.current + 1;
+            _this.move(nextIndex);
+
+        }
+        // 自动轮播
+        Swiper.prototype.autoPlay = function (interval) {
+            var _this = this
+            this.interval = interval
+            this.timer = setInterval(function () {
+                var nextIndex = _this.current + 1 > _this.$items.length - 1 ? 0 : _this.current + 1;
+                _this.move(nextIndex);
+            }, _this.interval);
+        }
+
+        $(document).ready(function () {
+            var swiper = new Swiper('.box');
+            swiper.autoPlay(3000);
+          
+        });
+    </script>
+</body>
+
+</html>

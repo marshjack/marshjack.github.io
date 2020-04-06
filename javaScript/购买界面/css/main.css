@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    padding: 5px 0;
+}
+
+a {
+    text-decoration: none;
+    font-size: 12px;
+    color: black;
+    margin: 0 7px;
+}
+
+.a_cng {
+    color: #27b9fe;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.box {
+    height: 600px;
+    width: 1200px;
+    margin: -20px auto;
+}
+
+.box .left {
+    float: left;
+    width: 550px;
+}
+
+.box .left>a:first-child {
+    display: block;
+    text-align: center;
+    height: 450px;
+    width: 450px;
+    position: relative;
+}
+
+.box .left>a img {
+    height: 450px;
+    width: 450px;
+}
+#floatDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #fff;
+    background-color: #fff;
+    opacity: 0.4;
+    cursor: move;
+    display: none;
+}
+
+#bigImg {
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    left:630px;
+    overflow: hidden;
+    top: 10px;
+    display: none;
+}
+
+#bigImg img {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.box .left ul {
+    width: 450px;
+    margin: 20px auto;
+    padding: 0 20px;
+    height: 80px;
+    box-sizing: border-box;
+}
+
+.box .left ul li {
+    float: left;
+}
+
+.box .left ul li a {
+    width: 70px;
+    margin-right: 10px;
+    cursor: auto;
+}
+
+.box .left ul li img {
+    height: 80px;
+}
+
+.box .left .use {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.box .left .use a {
+    font-size: 14px;
+    color: #bfbfbf;
+}
+
+.box .right {
+    float: left;
+    width: 650px;
+    margin-top: 30px;
+}
+
+.box .right p {
+    font-size: 12px;
+}
+
+.box .right .red {
+    color: #e03341;
+    font-size: 14px;
+}
+
+.box .right .price {
+    background-color: #f4f6fa;
+    height: 60px;
+    padding: 5px;
+}
+
+.box .right .price .red {
+    padding: 2px 0;
+}
+
+.box .right .price .red span {
+    font-size: 16px;
+}
+
+.box .right .price .jiagou a:first-child {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    background-color: #f2eaef;
+    color: #e03341;
+}
+
+.box .right .send {
+    padding: 10px;
+    color: #8c8c8c;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.box .right .send p:first-child i {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.box .right .send :nth-child(2) span {
+    font-size: 14px;
+    color: black;
+    margin-left: 15px;
+}
+
+.box .right .send :nth-child(2) i {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.box .right .send p:last-child {
+    margin-left: 65px;
+}
+
+.box .right .sel p {
+    color: #8c8c8c;
+    padding: 10px;
+}
+
+.box .right .sel p span {
+    margin-right: 15px;
+}
+
+.box .right .sel p a {
+    display: inline-block;
+    width: 170px;
+    height: 40px;
+    border: 1px solid #bfbfbf;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    color: #595959;
+}
+
+.box .right .sel p:last-child span {
+    margin-right: 20px;
+}
+
+.box .right .sel p:last-child button {
+    height: 30px;
+    width: 25px;
+}
+
+.box .right .sel p:last-child input {
+    height: 26px;
+    width: 50px;
+    text-align: center;
+}
+
+.box .right .sel .active {
+    border: 1px solid black;
+    color: black;
+}
+
+.box .right .buy button {
+    height: 50px;
+    font-size: 20px;
+    background-color: #27b3ff;
+    width: 220px;
+    line-height: 50px;
+    text-align: center;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 2px;
+    color: white;
+    margin-left: 12px;
+    margin-top: 30px;
+}
+
+.box .right .buy button:last-child {
+    border: 1px solid #27b3ff;
+    background-color: #fff;
+    color: #27b3ff;
+}
+

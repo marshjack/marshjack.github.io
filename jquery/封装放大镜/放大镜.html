@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <!-- 大图 -->
+        <div class="smallBox">
+            <img>
+            <!-- 工具 -->
+            <div class="tool"></div>
+        </div>
+        <!-- 放大效果 -->
+        <div class="bigBox"><img></div>
+        <!-- 多图选择 -->
+        <ul class="chosePic">
+            <li class="active"><img src="images/gt01.jpg"></li>
+            <li><img src="images/gt02.jpg"></li>
+            <li><img src="images/gt03.jpg"></li>
+            <li><img src="images/gt04.jpg"></li>
+        </ul>
+    </div>
+    <div class="glass">
+        <!-- 大图 -->
+        <div class="smallBox">
+            <img>
+            <!-- 工具 -->
+            <div class="tool"></div>
+        </div>
+        <!-- 放大效果 -->
+        <div class="bigBox"><img></div>
+        <!-- 多图选择 -->
+        <ul class="chosePic">
+            <li class="active"><img src="images/gt01.jpg"></li>
+            <li><img src="images/gt02.jpg"></li>
+            <li><img src="images/gt03.jpg"></li>
+            <li><img src="images/gt04.jpg"></li>
+        </ul>
+    </div>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <script src="package.js"></script>
+    <script>
+        $(document).ready(function () {
+            var bigGlass = new BigGlass('.box','',3);
+            // console.log(bigGlass);
+            var glass = new BigGlass('.glass','',4);
+        });
+    </script>
+</body>
+
+</html>

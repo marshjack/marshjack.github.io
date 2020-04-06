@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    html,body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .stage {
+        width: 500px;
+        height: 500px;
+        background: url('./img/k1.png') no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding-top: 40px;
+        animation: bgCng .5s linear infinite;
+        margin-right: 60px;
+    }
+
+    @keyframes bgCng {
+        0% {
+            background-image: url('./img/k1.png');
+        }
+
+        100% {
+            background-image: url('./img/k2.png');
+        }
+    }
+
+    ul {
+        width: 450px;
+        height: 450px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    li {
+        width: 130px;
+        height: 130px;
+        box-sizing: border-box;
+        border-radius: 20px;
+        background-image: url('./img/bg2.png');
+        background-position: 0 -5px;
+        background-size: cover;
+        text-align: center;
+        color: #61a2fc;
+        font-size: 18px;
+        padding-top: 30px;
+    }
+
+    li img {
+        height: 40px;
+        width: auto;
+    }
+
+    li:nth-of-type(5) {
+        color: white;
+        background-image: url('./img/bg1.png');
+        cursor: pointer;
+    }
+
+    li.active {
+        background-image: url('./img/bg1.png');
+        color: white;
+    }
+
+    .box2 {
+        height: 450px;
+        width: 450px;
+        position: relative;
+
+    }
+
+    .point {
+        position: absolute;
+        left: 140px;
+        top: 100px;
+        border-radius: 50%;
+    }
+
+    .point>img {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="stage">
+        <ul>
+            <li><img src="./img/j1.png" alt="">
+                <p>谢谢参与</p>
+            </li>
+            <li><img src="./img/j2.png" alt="">
+                <p>美女一个</p>
+            </li>
+            <li><img src="./img/j1.png" alt="">
+                <p>宝马一辆</p>
+            </li>
+            <li><img src="./img/j2.png" alt="">
+                <p>单车一辆</p>
+            </li>
+            <li>
+                <h1>抽奖</h1>
+                <p>消耗10积分</p>
+            </li>
+            <li><img src="./img/j1.png" alt="">
+                <p>鸡蛋一篮</p>
+            </li>
+            <li><img src="./img/j2.png" alt="">
+                <p>500红包</p>
+            </li>
+            <li><img src="./img/j1.png" alt="">
+                <p>靓号一个</p>
+            </li>
+            <li><img src="./img/j2.png" alt="">
+                <p>鲜花一篮</p>
+            </li>
+        </ul>
+    </div>
+    <div class="box2">
+        <img src="./img/turntable.png" alt="">
+        <div class="point">
+            <img src="./img/pointer.png" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    var arr = [1, 2, 3, 6, 9, 8, 7, 4];
+    var index = 0;
+    var lis = document.querySelectorAll('.stage ul li');
+    var pointer = document.querySelector('.box2 .point');
+    var rollerBox = document.querySelector('.box2>img');
+
+    function start(n) {
+        var a = 0;
+        var timer = setInterval(() => {
+            index++;
+            if (index > arr.length - 1) {
+                index = 0;
+                a++;
+            }
+            if (a >= 3 && index == n) {
+                clearInterval(timer);
+            }
+            lis.forEach(elem => {
+                elem.className = ""
+            })
+            lis[arr[index] - 1].className = "active";
+        }, 100);
+    }
+
+    function lottery(obj) {
+        // 防抖动
+        obj.onclick = null;
+        var current = 0;
+        var num = Math.floor(Math.random() * arr.length);
+        start(num);
+        setTimeout(() => {
+            console.log(num);
+            alert(lis[arr[num] - 1].innerText);
+        }, 3000);
+    }
+    lis[4].addEventListener('click', function () {
+        lottery(this)
+    });
+    pointer.addEventListener('click', function asd() {
+        var x = randomNum();
+        var gift = getGift(x);
+        roller(gift);
+        pointer.removeEventListener('click', asd);
+        setTimeout(function () {
+            pointer.addEventListener('click', asd);
+        }, 4500);
+    })
+
+    function randomNum() {
+        return Math.floor(Math.random() * 100);
+    }
+
+    function getGift(x) {
+        if (x < 3) {
+            return {
+                code: 1,
+                text: '一等奖'
+            };
+        } else if (x < 8) {
+            return {
+                code: 2,
+                text: '二等奖'
+            };
+        } else if (x < 15) {
+            return {
+                code: 3,
+                text: '三等奖'
+            };
+        } else if (x < 25) {
+            return {
+                code: 4,
+                text: '四等奖'
+            };
+        } else if (x < 40) {
+            return {
+                code: 5,
+                text: '五等奖'
+            };
+        } else if (x < 65) {
+            return {
+                code: 6,
+                text: '六等奖'
+            };
+        } else {
+            return {
+                code: 7,
+                text: '未得奖'
+            };
+        }
+    }
+
+    function roller(x) {
+        var d = (360 / 7 / 2) + (360 / 7) * (x.code - 1);
+        // console.log(d);
+        rollerBox.style.transform = 'rotate(' + (d + 360 * 10) + 'deg)';
+        rollerBox.style.transition = 'all 4s ease-in-out';
+
+        setTimeout(function () {
+            rollerBox.style.transform = 'rotate(' + d + 'deg)';
+            rollerBox.style.transition = 'none';
+            alert('恭喜您!!! ' + x.text);
+        }, 4500)
+    }
+</script>
+
+</html>

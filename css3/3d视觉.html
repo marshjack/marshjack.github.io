@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            align-items: center;
+            background: #ccc;
+            display: flex;
+            font-family: 'Open Sans', sans;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1000;
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        h1 {
+            color: #3e3e42;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            transform: translateZ(35px);
+        }
+
+        h3 {
+            color: #eb285d;
+            font-size: 16px;
+            margin-bottom: 6px;
+            transform: translateZ(25px);
+        }
+
+        .box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 35px;
+            transform-origin: 50% 50%;
+            transform-style: preserve-3d;
+            transform: rotateX(11deg) rotateY(16.5deg);
+        }
+
+        .card {
+            border-radius: 15px;
+            display: inline-block;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translatez(35px);
+            width: 175px;
+            text-align: center;
+        }
+
+        .card:not(:last-child) {
+            margin-right: 30px;
+        }
+
+        .pic {
+            position: relative;
+            height: 100%;
+        }
+
+        .bg {
+            bottom: -50px;
+            left: -50px;
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            transform-origin: 50% 50%;
+            transform: translateZ(-50px);
+            z-index: 0;
+        }
+
+        .one .pic {
+            top: 14px;
+            right: -10px;
+            height: 110%;
+        }
+
+        .one .bg {
+            background: url("img/1bg.jpg") center/cover;
+        }
+
+        .two .pic {
+            top: 25px;
+        }
+
+        .two .bg {
+            background: url("img/2bg.jpg") center/cover;
+        }
+
+        .three .pic {
+            top: 5px;
+            left: -4px;
+            height: 110%;
+        }
+
+        .three .bg {
+            background: url("img/3bg.jpg") center/cover;
+        }
+
+        .title {
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            height: 70px;
+            justify-content: center;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .text {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 0 10px;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3>Movies</h3>
+        <h1>Popular</h1>
+        <div class="card one">
+            <div class="bg"></div>
+            <img class="pic" src="./img/1.png" />
+            <div class="title">
+                <p class="text">Princess Mononoke</p>
+            </div>
+        </div>
+        <div class="card two">
+            <div class="bg"></div>
+            <img class="pic" src="./img/2.png" />
+            <div class="title">
+                <p class="text">Spirited Away</p>
+            </div>
+        </div>
+        <div class="card three">
+            <div class="bg"></div>
+            <img class="pic" src="./img/3.png" />
+            <div class="title">
+                <p class="text">Howl's Moving Castle</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var box = document.getElementsByClassName('box')[0];
+    document.body.onmousemove = function (ev) {
+        var e = ev || window.event;
+        var x = e.pageX;
+        var y = e.pageY;
+
+        var w = (x / window.innerWidth * 40 - 20).toFixed(1);
+        var h = (y / window.innerHeight * 40 - 20).toFixed(1);
+        // console.log(w, h);
+        var pic=this.getElementsByClassName("pic");
+        var bg = this.getElementsByClassName('bg');
+        box.style.transform="rotateX("+h+"deg) rotateY("+w+"deg)";
+        for(var i=0;i<pic.length;i++){
+            pic[i].style.transform= "translateX("+-w+"px) translateY("+h+"px)";
+        }
+        for(var i=0;i<bg.length;i++){
+            bg[i].style.backgroundPosition= w*.45+'px'+-h*.45+'px';
+        }
+    }
+  
+</script>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        margin: 30px auto;
+        width: 600px;
+    }
+
+    .contorl {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .contorl button {
+        border: 0;
+        background-color: skyblue;
+        outline: none;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        height: 40px;
+        border-radius: 20px;
+        padding: 10px;
+        line-height: 20px;
+    }
+    .game {
+        width: 100%;
+        height: 600px;
+        border: 2px solid skyblue;
+        padding: 1px;
+        position: relative;
+    }
+
+    .game>div {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        background-image: url(images/bg1.jpg);
+        background-repeat: no-repeat;
+        background-clip: content-box;
+        /* 动画 */
+        transition: all 0.5s;
+        box-sizing: border-box;
+        padding: 1px;
+    }
+
+    .game>.a1 {
+        left: 0;
+        top: 0;
+        background-position: 0px 0px;
+    }
+
+    .game>.a2 {
+        left: 200px;
+        top: 0;
+        background-position: -200px 0px;
+    }
+
+    .game>.a3 {
+        left: 400px;
+        top: 0;
+        background-position: -400px 0px;
+    }
+
+    .game>.a4 {
+        left: 0;
+        top: 200px;
+        background-position: 0 -200px;
+    }
+
+    .game>.a5 {
+        left: 200px;
+        top: 200px;
+        background-position: -200px -200px;
+    }
+
+    .game>.a6 {
+        left: 400px;
+        top: 200px;
+        background-position: -400px -200px;
+    }
+
+    .game>.a7 {
+        left: 0;
+        top: 400px;
+        background-position: 0 -400px;
+    }
+
+    .game>.a8 {
+        left: 200px;
+        top: 400px;
+        background-position: -200px -400px;
+    }
+    /* 空白 */
+    .game>.a9 {
+        left: 400px;
+        top: 400px;
+        background-position: -400px -400px;
+        opacity: 0;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="contorl"><button type="button" onclick="window.location.reload()">点击重新开始</button></div>
+        <div class="game" id="game">
+            <div class="a1"></div>
+            <div class="a2"></div>
+            <div class="a3"></div>
+            <div class="a4"></div>
+            <div class="a5"></div>
+            <div class="a6"></div>
+            <div class="a7"></div>
+            <div class="a8"></div>
+            <div class="a9" id="white"></div>
+        </div>
+    </div>
+</body>
+<script>
+    function Game(arr, arr1, box, white, imgArr) {
+        //数组
+        this.list = arr;
+        //随机数组
+        this.randomLi = arr1;
+        //九个盒子
+        this.box = box;
+        //空白区域
+        this.white = white;
+        this.imgArr = imgArr;
+        this.run();
+        this.imgRandom();
+    };
+    Game.prototype.run = function () {
+        // 获取Game的指向
+        var that = this;
+        // console.log(that);
+        for (var i = 0; i < this.box.length; i++) {
+            // 打乱顺序 直接开始
+            this.box[i].style.left = that.randomLi[i].left;
+            this.box[i].style.top = that.randomLi[i].top;
+            // console.log(this.box[i]);
+            // 添加鼠标点击事件 =>盒子移动
+            this.box[i].onclick = function () {
+                // 空白盒子在空间内的位置
+                // console.log(that.white);
+                var wTop = that.white.offsetTop;
+                var wLeft = that.white.offsetLeft;
+                // 点击盒子的位置
+                var bTop = this.offsetTop;
+                var bLeft = this.offsetLeft;
+                // 根据位置差 决定是否移动位置
+                // 宽度变 高度不变 ; 高度变 宽度不变
+                if (Math.abs(wTop - bTop) <= 200 && Math.abs(wTop - bTop) > 0 && wLeft == bLeft) {
+                    // 盒子移动到空白处
+                    // 空白位置变为盒子原来的位置
+                    this.style.top = wTop + 'px';
+                    that.white.style.top = bTop + 'px';
+                } else if (Math.abs(wLeft - bLeft) <= 200 && Math.abs(wLeft - bLeft) > 0 && wTop == bTop) {
+                    this.style.left = wLeft + 'px';
+                    that.white.style.left = bLeft + 'px';
+                }
+                // 创建数组a  
+                var a = [];
+                // console.log(that.list);
+                for (let j = 0; j < that.list.length; j++) {
+                    // 判断成功  
+                    // 比较随机打乱数组和原数组的位置 
+                    // console.log(that.list[j].left);
+                    if (that.list[j].left == that.box[j].style.left && that.list[j].top == that.box[j].style
+                        .top) {
+                        // 符合则push j  当a的数组长度=arr的数组长度
+                        a.push(j);
+                        if (a.length == that.list.length) {
+                            alert('恭喜通关');
+                        }
+                    }
+                }
+                // console.log(a);
+            }
+        }
+    }
+    // 随机切换图片
+    Game.prototype.imgRandom = function () {
+        var randomPic = this.imgArr[Math.floor(Math.random() * (this.imgArr.length))];
+        console.log(randomPic);
+        var that = this;
+        // console.log(this.box);
+        for (var i = 0; i < this.randomLi.length; i++) {
+            that.box[i].style.backgroundImage = 'url("images/' + randomPic + '.jpg")';
+
+        }
+    }
+    window.onload = function () {
+        // 获取九个拼图
+        var box = document.querySelectorAll('#game div');
+        // console.log(box);
+        //空白
+        var white = document.querySelector('#white');
+        var arr = [{
+            left: '0px',
+            top: '0px',
+        }, {
+            left: '200px',
+            top: '0px'
+        }, {
+            left: '400px',
+            top: '0px'
+        }, {
+            left: '0px',
+            top: '200px'
+        }, {
+            left: '200px',
+            top: '200px'
+        }, {
+            left: '400px',
+            top: '200px'
+        }, {
+            left: '0px',
+            top: '400px'
+        }, {
+            left: '200px',
+            top: '400px'
+        }, {
+            left: '400px',
+            top: '400px'
+        }];
+        let arr1 = arr.concat()
+        // console.log(arr1);
+
+        var imgArr = ['bg1', 'bg2', 'bg3'];
+        // arr1.sort(sortby);
+        arr1.sort(function () {
+            return Math.random() - 0.5;
+        })
+
+        var game = new Game(arr, arr1, box, white, imgArr);
+    }
+</script>
+
+</html>

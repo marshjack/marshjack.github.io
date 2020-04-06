@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 1170px;
+            height: 486px;
+            overflow: hidden;
+            position: relative;
+            margin: 50px auto;
+        }
+
+        .box .img {
+            height: 486px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .box .img li {
+            height: 486px;
+        }
+
+        .box .img li img {
+            height: 486px;
+            width: 600px;
+        }
+        .box .nav {
+            height: 486px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .box .nav li {
+            height: 486px;
+            margin: 0px 2px 0px 0;
+            position: relative;
+            width: 140px;
+            cursor: pointer;
+            cursor: hand;
+            overflow: hidden;
+            float: left
+        }
+
+        .box .nav .active {
+            width: 140px;
+            height: 486px;
+            word-break: break-all;
+            font-weight: bold;
+            font-size: 22px;
+            overflow: hidden;
+            line-height: 30px;
+        }
+
+        .box .nav .active {
+            display: table-cell;
+            height: 486px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left">
+            <ul class="nav">
+                <li class="active"><img src="images/img_01.jpg" /></li>
+                <li><img src="images/img_02.jpg" /></li>
+                <li><img src="images/img_03.jpg" /></li>
+                <li><img src="images/img_04.jpg" /></li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul class="img">
+                <li><img src="images/1.jpg" /></li>
+                <li><img src="images/2.jpg" /></li>
+                <li><img src="images/3.jpg" /></li>
+                <li><img src="images/4.jpg" /></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    // height: 486px;
+    $('.box .left .nav li').mouseover(function () {
+        var height = 486;
+        $(this).addClass('active').siblings().removeClass('active');
+        var index = $(this).index();
+        // console.log($('.box .right .img li').eq($(this).index()));
+        $('.box .right .img').animate({
+            top: index * -height + 'px'
+        }, 2000);
+    })
+
+</script>
+
+</html>

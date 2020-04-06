@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body bgcolor="#ccc">
+    <div class="box">
+        <img src="images/1.jpg" alt="" class="on">
+        <img src="images/2.jpg" alt="">
+        <img src="images/3.jpg" alt="">
+        <img src="images/4.jpg" alt="">
+        <div class="bottom">
+            <ul>
+                <li class="on"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <a href="#" class="ml">&lt;</a>
+        <a href="#" class="mr">&gt;</a>
+    </div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementsByClassName('box')[0];
+    var left = document.getElementsByClassName('ml')[0];
+    var right = document.getElementsByClassName('mr')[0];
+    var imgsrc = document.getElementsByTagName("img");
+    var list = document.getElementsByTagName("li");
+    var index = 0;
+    var timer;
+
+    //通用函数 绑定对应的图片和圆点
+    function fun() {
+        for (var i = 0; i < list.length; i++) {
+            list[i].removeAttribute('class');
+            imgsrc[i].removeAttribute('class');
+        }
+        list[index].setAttribute('class','on');
+        imgsrc[index].setAttribute('class','on');
+    }
+
+    // 循环播放
+    function lunbo() {
+        index++;
+        if (index >= list.length) {
+            index = 0;
+        }
+        fun();
+    }
+    
+    // 圆点选择 显示对应图片以及对应圆点
+    for (var i = 0; i < list.length; i++) {
+        list[i].select = i;
+        list[i].onclick = function () {
+            for (var j = 0; j < list.length; j++) {
+                list[j].removeAttribute('class');
+                imgsrc[j].removeAttribute('class');
+            }
+            this.setAttribute('class','on');
+            imgsrc[this.select].setAttribute('class','on');
+        }
+    }
+
+    // 左按钮选择
+    left.onclick = function () {
+        index--;
+        if (index < 0) {
+            index = list.length - 1;
+        }
+        fun();
+    }
+    // 右按钮选择
+    right.onclick = function () {
+        index++;
+        if (index >= list.length) {
+            index = 0;
+        }
+        fun();
+    }
+    // 自动轮播实现
+    timer = setInterval(lunbo, 1500);
+    // 鼠标覆盖上去 轮播结束
+    box.onmouseover = function () {
+        clearInterval(timer);
+    }
+    // 鼠标移开 轮播继续
+    box.onmouseleave = function () {
+        timer =setInterval(lunbo, 1500);
+    }
+    
+</script>

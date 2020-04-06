@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/playlist.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <audio src="https://music.163.com/song/media/outer/url?id=1432427879.mp3" autoplay></audio>
+        <div class="card">
+            <div class="cover">
+                <div class="cd">
+                    <img src="http://p1.music.126.net/-EV4XhJEJn_Ib7ebS1OHhg==/109951164820593469.jpg">
+                </div>
+                <div class="finger"></div>
+            </div>
+            <div class="control">
+                <h3></h3>
+                <h5></h5>
+                <span class="iconfont" onclick="prev()">&#xf0069;</span>
+                <span class="iconfont icon-bofangqi-bofang state" onclick="play()"></span>
+                <span class="iconfont" onclick="next()">&#xf006a;</span>
+            </div>
+
+        </div>
+        <div class="progress">
+            <input type="range" value="0" min="0" max="100" step="0.01">
+        </div>
+        <div class="time">
+            <span>00:00</span>/<span>00:00</span>
+        </div>
+
+    </div>
+    <ul class="list"></ul>
+</body>
+<script>
+    // 按钮
+    var audio = get('audio');
+    var box = get('.box');
+    var list = get('.list');
+    var h3 = get('h3');
+    var h5 = get('h5');
+    var progress = get('.progress input');
+    var timer = get('.time');
+    var state = get('.control .state');
+    // 下标
+    var current = 0;
+
+    playlist.forEach(function (elem, index) {
+        var node = document.createElement("li");
+        node.innerText = elem.name;
+        list.appendChild(node);
+    });
+
+    changeSong(playlist[current]);
+
+    // audio的状态
+    audio.onplay = function () {
+        box.classList.add("playing");
+        state.classList.remove('icon-bofangqi-bofang');
+        state.classList.add('icon-bofangqi-zanting');
+
+    };
+    // 暂停
+    audio.onpause = function () {
+        box.classList.remove("playing");
+        state.classList.remove('icon-bofangqi-zanting');
+        state.classList.add('icon-bofangqi-bofang');
+    };
+
+    // 位置改变
+    audio.ontimeupdate = function () {
+        // console.log(this.currentTime, this.duration);
+        if (isNaN(this.duration)) {
+            return;
+        }
+        // 更新进度条和背景
+        // currentTime 播放位置
+        progress.value = (this.currentTime / this.duration) * 100;
+        // console.log(progress.value);
+        progress.style.backgroundImage = "linear-gradient(to right, rgb(25, 201, 40), white " + progress.value +
+            "%, white)";
+        // console.log(progress.value);
+        // 更新时间
+        timer.children[0].innerText = countTime(this.currentTime);
+    };
+    // 音频时长改变
+    audio.ondurationchange = function () {
+        timer.children[1].innerText = countTime(this.duration);
+    };
+    // 列表顺序播放
+    audio.onended = function () {
+        current++;
+        if (current > playlist.length - 1) {
+            // 重新从0播放
+            current = 0;
+        }
+        changeSong(playlist[current]);
+    };
+    progress.onchange = function () {
+        // console.log(this.value);
+        audio.currentTime = (this.value * audio.duration) / 100;
+    };
+
+    // 时间修改
+    function countTime(n) {
+        var n = Math.floor(n);
+        var m = Math.floor(n / 60);
+        var s = n % 60;
+        m = m > 9 ? m : "0" + m;
+        s = s > 9 ? s : "0" + s;
+        return m + ":" + s;
+    }
+
+    // 切换歌曲
+    function changeSong(obj) {
+        // src和歌曲名 名字都改变
+        audio.src = countUrl(obj.id);
+        h3.innerText = obj.name;
+        h5.innerText = obj.artists;
+
+        get('.cd img').src = obj.picUrl;
+        document.querySelectorAll("ul.list li").forEach(function (element, index) {
+            element.onclick = function () {
+                //点击后切歌
+                current = index;
+                changeSong(playlist[current]);
+            }
+            if (index == current) {
+                element.classList.add("active");
+            } else {
+                element.classList.remove("active");
+            }
+        });
+    }
+
+    //  上一首
+    function prev() {
+        current == 0 ? current = playlist.length - 1 : current -= 1;
+        changeSong(playlist[current]);
+    }
+    // 下一首
+    function next() {
+        current == playlist.length - 1 ? current = 0 : current += 1;
+        changeSong(playlist[current]);
+    }
+    // 播放
+    function play(obj) {
+        // obj.classList.remove('')
+        // obj.classList.add('')
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+
+    // id返回歌曲url
+    function countUrl(id) {
+        return "https://music.163.com/song/media/outer/url?id=" + id + ".mp3";
+    }
+
+    function get(selector) {
+        return document.querySelector(selector)
+    };
+</script>
+
+</html>

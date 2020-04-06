@@ -1,0 +1,91 @@
+    .box2 {
+        width: 300px;
+        margin: 20px auto;
+    }
+
+    .box2 .pic,
+    .slider,
+    .slider .mask .sliderBox2 {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .box2 .slider .mask,
+    .box2 canvas#piece {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .box2 canvas#piece {
+        z-index: 9;
+    }
+
+    .box2 .slider {
+        text-align: center;
+        border: 1px solid skyblue;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .box2 .slider .mask {
+        background-image: linear-gradient(snow, skyblue);
+        width: 40px;
+    }
+
+    .box2 .slider .mask .sliderBox2 {
+        width: 40px;
+        height: 40px;
+        background-color: snow;
+        transition: background 0.5s;
+        outline: 1px solid skyblue;
+    }
+
+    .box2 .slider .mask .sliderBox2:hover {
+        background: skyblue;
+    }
+
+    .box2 .slider .mask .sliderBox2:hover .icon {
+        background-position-y: -10px;
+    }
+
+    .box2 .slider .mask .sliderBox2 .icon {
+        width: 14px;
+        height: 15px;
+        display: block;
+        background-image: url('../image/icon.png');
+        position: relative;
+        top: 11px;
+        left: 13px;
+        background-position-y: -22px;
+    }
+
+    .box2 .slider.success .mask {
+        background: green;
+    }
+
+    .box2 .slider.success .mask .sliderBox2 {
+        outline: 1px solid green;
+    }
+
+    .box2 .slider.success .mask .sliderBox2 .icon {
+        background-position-y: -64px;
+    }
+
+    .box2 .slider.error .mask {
+        background: red;
+    }
+
+    .box2 .slider.error .mask .sliderBox2 {
+        outline: 1px solid red;
+    }
+
+    .box2 .slider.error .mask .sliderBox2 .icon {
+        background-position-y: -95px;
+    }
+
+    .box2 .slider.success .mask .sliderBox2:hover,
+    .box2 .slider.error .mask .sliderBox2:hover {
+        background: #fff;
+    }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <h1>滚动验证</h1>
+    <div class="box">
+        <div class="main">
+            <div class="state"></div>
+            <canvas id="pic" width="200" height="200"></canvas>
+        </div>
+        <div class="slider">
+            <div class="mask">
+                <div class="sliderBox">
+                    <span class="icon"></span>
+                </div>
+            </div>
+            <span class="text">向右滑动滑块填充拼图</span>
+        </div>
+        <img id="source1" src="./image/1.jpg" style="display: none;">
+    </div>
+    <h1>滑动验证</h1>
+    <div class="box2">
+        <div class="pic">
+            <canvas id="main" width="300" height="150"></canvas>
+            <canvas id="piece" width="300" height="150"></canvas>
+        </div>
+        <div class="slider">
+            <div class="mask">
+                <div class="sliderBox2">
+                    <span class="icon"></span>
+                </div>
+            </div>
+            <span class="text">向右滑动滑块填充拼图</span>
+        </div>
+        <img id="source2" style="display:none" src="./image/2.jpg">
+    </div>
+    <script src="slider.js"></script>
+    <script src="roll.js"></script>
+</body>
+<script>
+    var box_slider = get('.box2 .slider');
+    var box_sliderBox = get('.box2 .sliderBox2');
+    var box_mask = get('.box2 .mask');
+    var box_piece = get('.box2 #piece');
+    var box_main = get('.box2 #main');
+    var box_pic = get('.box2 #source2');
+    var box_icon = get('.box2 .icon');
+    var box_slider = new Slider(box_main, box_piece, box_slider, box_mask, box_sliderBox, box_icon, box_pic);
+
+</script>
+
+</html>
