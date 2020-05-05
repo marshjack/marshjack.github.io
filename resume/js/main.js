@@ -16,10 +16,11 @@ var resumePic = {
     14: ['css3/btn.html', 'css3按钮'],
     15: ['css3/3d视觉.html', '3d视觉'],
     16: ['css3/chart.html', '3Dchart'],
+    17:['vue/网易云音乐/index.html','vue-cli网易云音乐']
 };
 for (let key in resumePic) {
-    document.querySelector('#resProj .proj').innerHTML +=`<li><a href="${resumePic[key][0]}" target="_blank"><img src="./resume/images/${resumePic[key][1]}.jpg"></a><p>${resumePic[key][1]}</p>
-</li>`;
+    document.querySelector('#resProj .proj').innerHTML +=`<div class="item"><a href="${resumePic[key][0]}" target="_blank"><img src="./resume/images/${resumePic[key][1]}.jpg"><p>${resumePic[key][1]}</p></a>
+</div>`;
 }
 
 $(document).scroll(function () {
@@ -38,11 +39,12 @@ $(document).scroll(function () {
     }
     if (topHeight >= height * 2 - 150) {
         $("#resEduca").children().show();
-        $("#resEduca").find('.nTitle').addClass('slideInUp animated').end().find('.container div').addClass('flipInY animated');
+        $("#resEduca").find('.nTitle').addClass('slideInUp animated').end().find('.container').addClass('flipInY animated');
     }
     if (topHeight >= height * 3 - 150) {
         $("#resProj").children().show();
         $("#resProj").find('.nTitle').addClass('slideInUp animated');
+        $("#resProj").find('.proj').addClass('jackInTheBox animated');
     }
     if (topHeight >= height * 4 - 150) {
         $("#resSkill").children().show();
