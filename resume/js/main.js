@@ -16,7 +16,7 @@ var resumePic = {
     14: ['css3/btn.html', 'css3按钮'],
     15: ['css3/3d视觉.html', '3d视觉'],
     16: ['css3/chart.html', '3Dchart'],
-    17:['vue/网易云音乐/index.html','vue-cli网易云音乐']
+    17:['Vue/网易云音乐/index.html','vue-cli网易云音乐']
 };
 for (let key in resumePic) {
     document.querySelector('#resProj .proj').innerHTML +=`<div class="item"><a href="${resumePic[key][0]}" target="_blank"><img src="./resume/images/${resumePic[key][1]}.jpg"><p>${resumePic[key][1]}</p></a>
