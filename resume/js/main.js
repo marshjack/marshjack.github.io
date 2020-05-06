@@ -4,7 +4,7 @@ var resumePic = {
     2: ['HTML+CSS/学成在线/index.html', 'html静态页面--学成在线'],
     3: ['javaScript/九宫格/index.html', 'js九宫格游戏'],
     4: ['javaScript/抽奖/index.html', 'js抽奖'],
-    5: ['javaScript/购买页面/index.html', 'js魅族购买页面(放大镜+分类)'],
+    5: ['javaScript/购买界面/index.html', 'js魅族购买页面(放大镜+分类)'],
     6: ['ajax/index.html', 'ajax星座运势'],
     7: ['jquery/无缝轮播封装/index.html', 'jquery无缝轮播封装'],
     8: ['jquery/配对游戏封装/index.html', 'jquery配对游戏'],
