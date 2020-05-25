@@ -5,19 +5,18 @@ var resumePic = {
     3: ['javaScript/九宫格/index.html', 'js九宫格游戏'],
     4: ['javaScript/抽奖/index.html', 'js抽奖'],
     5: ['javaScript/购买界面/index.html', 'js魅族购买页面(放大镜+分类)'],
-    6: ['ajax/index.html', 'ajax星座运势'],
-    7: ['jquery/无缝轮播封装/index.html', 'jquery无缝轮播封装'],
-    8: ['jquery/配对游戏封装/index.html', 'jquery配对游戏'],
-    9: ['bootstrap/model/index.html', 'bootstrap模特网站'],
-    10: ['bootstrap/Blog/index.html', 'bootstrap个人博客'],
-    11: ['html5/拼图封装/index.html', 'html5拖拽拼图游戏'],
-    12: ['html5/canvas验证/index.html', 'canvas验证'],
-    13: ['html5/播放器/index.html', 'html5音乐播放器'],
-    14: ['css3/btn.html', 'css3按钮'],
-    15: ['css3/3d视觉.html', '3d视觉'],
-    16: ['css3/chart.html', '3Dchart'],
-    17:['Vue/网易云音乐/index.html','vue-cli网易云音乐'],
-    18:['Vue/场库app/index.html','vant+vue全家桶模仿场库app']
+    6: ['jquery/无缝轮播封装/index.html', 'jquery无缝轮播封装'],
+    7: ['jquery/配对游戏封装/index.html', 'jquery配对游戏'],
+    8: ['bootstrap/model/index.html', 'bootstrap模特网站'],
+    9:  ['bootstrap/Blog/index.html', 'bootstrap个人博客'],
+    10: ['html5/拼图封装/index.html', 'html5拖拽拼图游戏'],
+    11: ['html5/canvas验证/index.html', 'canvas验证'],
+    12: ['html5/播放器/index.html', 'html5音乐播放器'],
+    13: ['css3/btn.html', 'css3按钮'],
+    14: ['css3/3d视觉.html', '3d视觉'],
+    15: ['css3/chart.html', '3Dchart'],
+    16:['Vue/网易云音乐/index.html','vue-cli网易云音乐'],
+    17:['Vue/场库app/index.html','vant+vue全家桶模仿场库app']
 };
 for (let key in resumePic) {
     document.querySelector('#resProj .proj').innerHTML +=`<div class="item"><a href="${resumePic[key][0]}" target="_blank"><img src="./resume/images/${resumePic[key][1]}.jpg"><p>${resumePic[key][1]}</p></a>
